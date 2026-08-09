@@ -26,22 +26,58 @@ CodeCanon defines a compact engineering standard intended to reduce those failur
 
 ## Installation
 
-Clone the repository:
+### One command — recommended
+
+Install CodeCanon globally with the open Agent Skills CLI:
 
 ```bash
-git clone https://github.com/Quavon-dev/CodeCanon-skill.git
+npx skills add Quavon-dev/CodeCanon-skill@codecanon -g -y
 ```
 
-Then place `SKILL.md` in the skill directory used by your coding agent.
+The CLI detects supported coding agents and installs the skill into the appropriate skill directory.
 
-Common locations include:
+For a project-local installation, omit `-g`:
+
+```bash
+npx skills add Quavon-dev/CodeCanon-skill@codecanon -y
+```
+
+To choose a specific agent explicitly:
+
+```bash
+npx skills add Quavon-dev/CodeCanon-skill@codecanon -g -a claude-code -y
+npx skills add Quavon-dev/CodeCanon-skill@codecanon -g -a codex -y
+```
+
+### Ask your AI coding agent to install it
+
+Paste this prompt into a coding agent that can use the terminal:
 
 ```text
-~/.claude/skills/codecanon/SKILL.md
-~/.agents/skills/codecanon/SKILL.md
+Install CodeCanon globally from https://github.com/Quavon-dev/CodeCanon-skill as an Agent Skill for this coding environment.
+
+Prefer the standard Agent Skills CLI and install the `codecanon` skill globally. If that CLI is unavailable, use the coding agent's documented global skill directory instead. Do not execute untrusted remote shell scripts.
+
+After installation, verify that SKILL.md exists in the installed skill directory, that its YAML frontmatter is valid, and that the agent can discover the `codecanon` skill. Do not modify unrelated files. Tell me the exact installation path and verification result when finished.
 ```
 
-You can also copy the skill into a repository-specific skill location when your agent supports project-level skills.
+### Manual installation
+
+Clone the repository directly into your agent's supported skill directory.
+
+Claude Code:
+
+```bash
+git clone --depth 1 https://github.com/Quavon-dev/CodeCanon-skill.git ~/.claude/skills/codecanon
+```
+
+Agents using the shared `.agents` skill location:
+
+```bash
+git clone --depth 1 https://github.com/Quavon-dev/CodeCanon-skill.git ~/.agents/skills/codecanon
+```
+
+If your agent uses a different native skill directory, follow that agent's documentation.
 
 ## Usage
 
