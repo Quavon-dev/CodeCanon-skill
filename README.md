@@ -28,25 +28,38 @@ CodeCanon defines a compact engineering standard intended to reduce those failur
 
 ### One command — recommended
 
-Install CodeCanon globally with the open Agent Skills CLI:
+Install CodeCanon globally for the agents you actually use. For Claude Code, Codex, and GitHub Copilot:
 
 ```bash
-npx skills add Quavon-dev/CodeCanon-skill@codecanon -g -y
+npx skills add Quavon-dev/CodeCanon-skill --skill codecanon -g -a claude-code -a codex -a github-copilot -y
 ```
 
-The CLI detects supported coding agents and installs the skill into the appropriate skill directory.
+Specifying the target agents explicitly prevents the CLI from attempting a global install for detected project-only agents such as PromptScript.
 
-For a project-local installation, omit `-g`:
+Install for only one agent:
 
 ```bash
-npx skills add Quavon-dev/CodeCanon-skill@codecanon -y
+npx skills add Quavon-dev/CodeCanon-skill --skill codecanon -g -a claude-code -y
+npx skills add Quavon-dev/CodeCanon-skill --skill codecanon -g -a codex -y
+npx skills add Quavon-dev/CodeCanon-skill --skill codecanon -g -a github-copilot -y
 ```
 
-To choose a specific agent explicitly:
+For an interactive install, where you choose the target agents yourself:
 
 ```bash
-npx skills add Quavon-dev/CodeCanon-skill@codecanon -g -a claude-code -y
-npx skills add Quavon-dev/CodeCanon-skill@codecanon -g -a codex -y
+npx skills add Quavon-dev/CodeCanon-skill --skill codecanon -g
+```
+
+For a project-local installation, omit `-g` and select the desired agent:
+
+```bash
+npx skills add Quavon-dev/CodeCanon-skill --skill codecanon -a claude-code -y
+```
+
+Verify the global installation:
+
+```bash
+npx skills ls -g -a claude-code -a codex -a github-copilot
 ```
 
 ### Ask your AI coding agent to install it
@@ -54,11 +67,11 @@ npx skills add Quavon-dev/CodeCanon-skill@codecanon -g -a codex -y
 Paste this prompt into a coding agent that can use the terminal:
 
 ```text
-Install CodeCanon globally from https://github.com/Quavon-dev/CodeCanon-skill as an Agent Skill for this coding environment.
+Install CodeCanon globally from https://github.com/Quavon-dev/CodeCanon-skill as an Agent Skill for the coding agents available in this environment.
 
-Prefer the standard Agent Skills CLI and install the `codecanon` skill globally. If that CLI is unavailable, use the coding agent's documented global skill directory instead. Do not execute untrusted remote shell scripts.
+Use the standard Agent Skills CLI. Install only the `codecanon` skill and explicitly target only agents that support global skill installation. Do not use an unrestricted global auto-install that includes project-only agents. If the CLI is unavailable, use the active coding agent's documented global skill directory instead. Do not execute untrusted remote shell scripts.
 
-After installation, verify that SKILL.md exists in the installed skill directory, that its YAML frontmatter is valid, and that the agent can discover the `codecanon` skill. Do not modify unrelated files. Tell me the exact installation path and verification result when finished.
+After installation, verify that SKILL.md exists in the installed skill directory, that its YAML frontmatter is valid, and that the active agent can discover the `codecanon` skill. Do not modify unrelated files. Tell me the exact installation path and verification result when finished.
 ```
 
 ### Manual installation
