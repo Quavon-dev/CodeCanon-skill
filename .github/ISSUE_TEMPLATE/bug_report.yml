@@ -1,0 +1,37 @@
+name: Bug report
+description: Report a CodeCanon rule that causes, permits, or fails to prevent incorrect agent behavior
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a concrete CodeCanon failure mode. Do not disclose exploitable security issues here; follow SECURITY.md instead.
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Observed behavior
+      description: What did the coding agent do incorrectly?
+      placeholder: Describe the concrete behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should CodeCanon have caused the agent to do instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction context
+      description: Include the relevant task, agent/model, repository context, and CodeCanon version or commit when known. Remove secrets and private data.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested improvement
+      description: Optional minimal wording or rule change that could address the problem.
