@@ -1,0 +1,35 @@
+name: Feature request
+description: Propose a focused improvement to CodeCanon
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What concrete coding-agent failure mode or missing rule should this address?
+      placeholder: Describe the problem rather than only the proposed solution.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe the smallest rule or wording change that would address the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples or evidence
+      description: Optional examples, model behavior, references, or other evidence that make the need clear.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Scope check
+      options:
+        - label: This applies broadly rather than to one project only.
+          required: true
+        - label: I checked that the existing SKILL.md does not already cover this adequately.
+          required: true
